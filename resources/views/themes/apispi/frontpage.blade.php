@@ -10,55 +10,7 @@
 
     .as-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
 
-    /* ── Restyle the layout's .site-nav for the apispi theme ── */
-    .site-nav {
-        background: #fff !important;
-        border-radius: 0 !important;
-        box-shadow: 0 1px 0 #e8eaf0 !important;
-        padding: 0.75rem 1.25rem !important;
-    }
-    .site-nav a.brand {
-        color: #7c3aed !important;
-        font-weight: 800 !important;
-        font-size: 1.2rem !important;
-        letter-spacing: -0.5px !important;
-    }
-    .site-nav .nav-links a {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        color: #4b5563 !important;
-        font-size: 0.9rem !important;
-        font-weight: 500 !important;
-        padding: 0.45rem 0.75rem !important;
-        border-radius: 6px !important;
-        transition: color .15s, background .15s !important;
-    }
-    .site-nav .nav-links a:hover {
-        color: #7c3aed !important;
-        background: #f5f3ff !important;
-        transform: none !important;
-        box-shadow: none !important;
-    }
-    .site-nav .nav-links a.nav-active {
-        background: #7c3aed !important;
-        color: #fff !important;
-        border-color: transparent !important;
-        box-shadow: 0 4px 12px rgba(124,58,237,0.3) !important;
-    }
-    /* style the last link (Register) as a CTA button */
-    .site-nav .nav-links a[href*="register"] {
-        background: #7c3aed !important;
-        color: #fff !important;
-        font-weight: 700 !important;
-        border-radius: 6px !important;
-        padding: 0.45rem 1rem !important;
-    }
-    .site-nav .nav-links a[href*="register"]:hover {
-        background: #6d28d9 !important;
-        color: #fff !important;
-    }
-    /* remove the large top padding the .page wrapper adds before content */
+    /* remove the large top padding the .page wrapper adds before the hero */
     .page { padding-top: 0 !important; }
 
     /* ── Hero ── */
