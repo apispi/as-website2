@@ -51,6 +51,12 @@ Route::get('/', function () {
             return view($view, ['products' => $products]);
         }
 
+        if ($theme === 'apispi') {
+            $agentCategory = config('agents.category', 'Agent');
+            $products = \App\Models\Product::with('media')->where('category', $agentCategory)->orderBy('name')->get();
+            return view($view, ['products' => $products]);
+        }
+
         return view($view);
     }
 
@@ -80,6 +86,11 @@ if (config('shop.enabled')) {
 // Games frontpage
 if (config('games.enabled')) {
     Route::get('/games', [App\Http\Controllers\GamesController::class, 'index'])->name('games.index');
+}
+
+// Agents listing
+if (config('agents.enabled')) {
+    Route::get('/agents', [App\Http\Controllers\AgentsController::class, 'index'])->name('agents.index');
 }
 
 // MiniCiv play page (simple client-side demo)

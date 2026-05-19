@@ -22,7 +22,17 @@
     </header>
 
     <section class="card" style="margin-bottom:1.5rem;">
-        <h2 style="margin-top:0;">Available products</h2>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;">
+            <h2 style="margin:0;">Available products</h2>
+            @if(!empty($categories))
+                <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                    <a href="{{ route('shop') }}" style="padding:0.4rem 0.9rem;border-radius:999px;font-size:0.85rem;font-weight:600;text-decoration:none;{{ !$activeCategory ? 'background:var(--primary);color:#fff;' : 'background:rgba(15,23,42,0.06);color:var(--text);' }}">All</a>
+                    @foreach($categories as $cat)
+                        <a href="{{ route('shop') }}?category={{ urlencode($cat) }}" style="padding:0.4rem 0.9rem;border-radius:999px;font-size:0.85rem;font-weight:600;text-decoration:none;{{ $activeCategory === $cat ? 'background:var(--primary);color:#fff;' : 'background:rgba(15,23,42,0.06);color:var(--text);' }}">{{ $cat }}</a>
+                    @endforeach
+                </div>
+            @endif
+        </div>
         <p style="margin-bottom:1.5rem;color:var(--muted);">All prices are in USD and renew automatically at the end of each license duration. Purchasing occurs inside the secure dashboard.</p>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">

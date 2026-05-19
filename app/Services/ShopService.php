@@ -6,12 +6,30 @@ use App\Models\Product;
 
 class ShopService
 {
-    public function getProducts()
+    public function getProducts(?string $category = null)
     {
         if (!config('products.enabled')) {
             return collect();
         }
-        return Product::orderBy('name')->get();
+        $query = Product::orderBy('name');
+        if ($category !== null) {
+            $query->where('category', $category);
+        }
+        return $query->get();
+    }
+
+    public function getCategories(): array
+    {
+        if (!config('products.enabled')) {
+            return [];
+        }
+        return Product::select('category')
+            ->whereNotNull('category')
+            ->where('category', '!=', '')
+            ->distinct()
+            ->orderBy('category')
+            ->pluck('category')
+            ->toArray();
     }
 
     public function getProductDetails(Product $product): array

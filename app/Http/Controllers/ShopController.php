@@ -24,11 +24,14 @@ class ShopController extends Controller
         $this->shopService = $shopService;
     }
 
-    public function index(): View
+    public function index(\Illuminate\Http\Request $request): View
     {
         $this->abortIfShopDisabled();
+        $category = $request->query('category');
         return view('shop.index', [
-            'products' => $this->shopService->getProducts(),
+            'products'       => $this->shopService->getProducts($category ?: null),
+            'categories'     => $this->shopService->getCategories(),
+            'activeCategory' => $category ?: null,
         ]);
     }
 

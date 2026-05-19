@@ -19,7 +19,20 @@
         </label>
         <label>
             <span>Category</span>
-            <input type="text" name="category" value="{{ old('category', $product->category ?? '') }}">
+            <select name="category" style="width:100%;border:1px solid rgba(15,23,42,0.15);border-radius:0.9rem;padding:0.85rem 1rem;font-size:1rem;background:var(--bg);">
+                <option value="">— none —</option>
+                @php
+                    $categoryOptions = ['Agent', 'Game', 'Software', 'Service', 'Training'];
+                    $currentCategory = old('category', $product->category ?? '');
+                    if ($currentCategory && !in_array($currentCategory, $categoryOptions)) {
+                        $categoryOptions[] = $currentCategory;
+                    }
+                    sort($categoryOptions);
+                @endphp
+                @foreach($categoryOptions as $opt)
+                    <option value="{{ $opt }}" {{ $currentCategory === $opt ? 'selected' : '' }}>{{ $opt }}</option>
+                @endforeach
+            </select>
         </label>
         <label>
             <span>Price (USD per seat)</span>
