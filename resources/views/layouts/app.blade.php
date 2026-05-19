@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('site.name') }}</title>
-    <link rel="icon" type="image/svg+xml" href="{{ asset('apispi-icon.svg') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <style>
     :root {
         --primary: #7c3aed;
@@ -60,13 +60,6 @@
         letter-spacing: -0.5px;
         white-space: nowrap;
         margin-right: 0.5rem;
-    }
-    .brand img {
-        width: 28px;
-        height: 28px;
-        border-radius: 6px;
-        display: block;
-        flex-shrink: 0;
     }
     .nav-links {
         display: flex;
@@ -326,13 +319,6 @@
         letter-spacing: -0.5px;
         margin-bottom: 0.6rem;
     }
-    .footer-brand .footer-logo img {
-        width: 28px;
-        height: 28px;
-        border-radius: 6px;
-        display: block;
-        flex-shrink: 0;
-    }
     .footer-brand p { font-size: 0.87rem; color: rgba(255,255,255,0.5); line-height: 1.65; margin: 0; max-width: 230px; }
     .footer-col h4 { font-size: 0.76rem; font-weight: 700; color: rgba(255,255,255,0.9); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 0.75rem 0; }
     .footer-col a { display: block; color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.87rem; line-height: 2.1; transition: color .12s ease; }
@@ -355,10 +341,22 @@
     @stack('head')
 </head>
 <body>
+    {{-- Hidden SVG gradient sprite — referenced by logo icons throughout the page --}}
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true">
+        <defs>
+            <linearGradient id="apispi-grad" x1=".5" y1="0" x2=".5" y2="1">
+                <stop offset="0%" stop-color="#FCD34D"/>
+                <stop offset="100%" stop-color="#D97706"/>
+            </linearGradient>
+        </defs>
+    </svg>
     <header class="site-header">
         <div class="site-header-inner">
             <a href="{{ route('home') }}" class="brand">
-                <img src="{{ asset('apispi-icon.svg') }}" alt="{{ config('site.name') }} logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 27" aria-hidden="true" style="width:22px;height:25px;flex-shrink:0;">
+                    <path d="M12,0.5 L13.4,3.3 L16,4.5 L13.4,5.7 L12,8.5 L10.6,5.7 L8,4.5 L10.6,3.3 Z" fill="url(#apispi-grad)"/>
+                    <path d="M12,8.5 L24,26 L20,26 L15.5,18 L8.5,18 L4,26 L0,26 Z" fill="url(#apispi-grad)"/>
+                </svg>
                 {{ config('site.name') }}
             </a>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
@@ -423,7 +421,10 @@
         <div class="site-footer-inner">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <img src="{{ asset('apispi-icon.svg') }}" alt="{{ config('site.name') }} logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 27" aria-hidden="true" style="width:22px;height:25px;flex-shrink:0;">
+                        <path d="M12,0.5 L13.4,3.3 L16,4.5 L13.4,5.7 L12,8.5 L10.6,5.7 L8,4.5 L10.6,3.3 Z" fill="url(#apispi-grad)"/>
+                        <path d="M12,8.5 L24,26 L20,26 L15.5,18 L8.5,18 L4,26 L0,26 Z" fill="url(#apispi-grad)"/>
+                    </svg>
                     {{ config('site.name') }}
                 </div>
                 <p>Intelligent agents built for real-world workflows. Deploy in minutes, scale with confidence.</p>
