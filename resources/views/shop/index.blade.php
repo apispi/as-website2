@@ -72,10 +72,7 @@
                                         $file = 'joystick.svg'; $assetDir = 'games';
                                     }
                                 }
-                                $m = \App\Models\Media::where('filename', $file)->latest()->first();
-                                $thumb = $m
-                                    ? \Illuminate\Support\Facades\Storage::disk($m->disk)->url($m->path)
-                                    : asset('assets/' . $assetDir . '/' . $file);
+                                    $thumb = asset('assets/' . $assetDir . '/' . $file);
                             }
                         @endphp
                         <div style="width:64px;height:64px;flex:0 0 64px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid rgba(15,23,42,0.04);">

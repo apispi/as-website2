@@ -11,7 +11,7 @@ class ShopService
         if (!config('products.enabled')) {
             return collect();
         }
-        $query = Product::orderBy('name');
+        $query = Product::with('media')->orderBy('name');
         if ($category !== null) {
             $query->where('category', $category);
         }
