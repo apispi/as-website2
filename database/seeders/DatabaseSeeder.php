@@ -97,5 +97,8 @@ class DatabaseSeeder extends Seeder
 
         // Seed example agent products (if not present)
         $this->call(\Database\Seeders\AgentsSeeder::class);
+
+        // Seed posts from beta.apispi.com
+        $this->call(\Database\Seeders\PostsSeeder::class);
     }
 }
