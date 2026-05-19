@@ -29,7 +29,7 @@
         .page {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 1.5rem 2.5rem;
+            padding: 4rem 1.5rem 2.5rem;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
