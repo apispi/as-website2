@@ -51,6 +51,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function licenses()
+    {
+        return $this->hasMany(License::class);
+    }
+
     public function favourites()
     {
         return $this->hasMany(Favourite::class);

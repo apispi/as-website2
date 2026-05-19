@@ -203,6 +203,10 @@ Route::prefix('admin')
         }
         Route::resource('posts', \App\Http\Controllers\Admin\PostController::class)->except(['show']);
         Route::resource('users', AdminUserController::class)->except(['show']);
+        if (config('license.enabled')) {
+            Route::post('users/{user}/licenses', [AdminUserController::class, 'grantLicense'])->name('users.licenses.store');
+            Route::delete('users/{user}/licenses/{license}', [AdminUserController::class, 'revokeLicense'])->name('users.licenses.destroy');
+        }
         if (config('admin.servers_enabled')) {
             Route::resource('servers', AdminServerController::class)->except(['show']);
         }
