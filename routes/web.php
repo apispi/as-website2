@@ -54,7 +54,10 @@ Route::get('/', function () {
         if ($theme === 'apispi') {
             $agentCategory = config('agents.category', 'Agent');
             $products = \App\Models\Product::with('media')->where('category', $agentCategory)->orderBy('name')->get();
-            return view($view, ['products' => $products]);
+            $posts = config('posts.enabled')
+                ? \App\Models\LocalPost::published()->orderBy('published_at', 'desc')->limit(3)->get()
+                : collect();
+            return view($view, ['products' => $products, 'posts' => $posts]);
         }
 
         return view($view);
