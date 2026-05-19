@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('site.name') }}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('apispi-icon.svg') }}">
     <style>
     :root {
         --primary: #7c3aed;
@@ -49,6 +50,9 @@
         gap: 0.5rem;
     }
     .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
         font-size: 1.15rem;
         font-weight: 800;
         color: var(--primary);
@@ -56,6 +60,13 @@
         letter-spacing: -0.5px;
         white-space: nowrap;
         margin-right: 0.5rem;
+    }
+    .brand img {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: block;
+        flex-shrink: 0;
     }
     .nav-links {
         display: flex;
@@ -306,11 +317,21 @@
         gap: 2.5rem;
     }
     .footer-brand .footer-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
         font-size: 1.2rem;
         font-weight: 800;
         color: #fff;
         letter-spacing: -0.5px;
         margin-bottom: 0.6rem;
+    }
+    .footer-brand .footer-logo img {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: block;
+        flex-shrink: 0;
     }
     .footer-brand p { font-size: 0.87rem; color: rgba(255,255,255,0.5); line-height: 1.65; margin: 0; max-width: 230px; }
     .footer-col h4 { font-size: 0.76rem; font-weight: 700; color: rgba(255,255,255,0.9); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 0.75rem 0; }
@@ -336,7 +357,10 @@
 <body>
     <header class="site-header">
         <div class="site-header-inner">
-            <a href="{{ route('home') }}" class="brand">{{ config('site.name') }}</a>
+            <a href="{{ route('home') }}" class="brand">
+                <img src="{{ asset('apispi-icon.svg') }}" alt="{{ config('site.name') }} logo">
+                {{ config('site.name') }}
+            </a>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
                 <span aria-hidden="true">☰</span> Menu
             </button>
@@ -398,7 +422,10 @@
     <footer class="site-footer">
         <div class="site-footer-inner">
             <div class="footer-brand">
-                <div class="footer-logo">{{ config('site.name') }}</div>
+                <div class="footer-logo">
+                    <img src="{{ asset('apispi-icon.svg') }}" alt="{{ config('site.name') }} logo">
+                    {{ config('site.name') }}
+                </div>
                 <p>Intelligent agents built for real-world workflows. Deploy in minutes, scale with confidence.</p>
             </div>
             <div class="footer-col">
