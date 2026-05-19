@@ -9,13 +9,7 @@
         <h1>Product catalog</h1>
         <p class="lead">Manage the master list of software products that licenses attach to.</p>
     </div>
-    @include('partials.admin-nav', ['active' => 'products'])
-    <div>
-        <a href="{{ route('admin.products.create') }}"
-           style="display:inline-block;padding:0.6rem 1.25rem;background:var(--primary);color:#fff;border-radius:8px;font-weight:600;text-decoration:none;font-size:0.95rem;">
-            + Add product
-        </a>
-    </div>
+    @include('partials.admin-nav', ['active' => 'products', 'createRoute' => 'admin.products.create', 'createLabel' => '+ Add product'])
 </header>
 
 @if (session('status'))

@@ -9,13 +9,7 @@
         <h1>License management</h1>
         <p class="lead">Review, edit, and retire license allocations across the organization.</p>
     </div>
-    @include('partials.admin-nav', ['active' => 'licenses'])
-    <div>
-        <a href="{{ route('admin.licenses.create') }}"
-           style="display:inline-block;padding:0.6rem 1.25rem;background:var(--primary);color:#fff;border-radius:8px;font-weight:600;text-decoration:none;font-size:0.95rem;">
-            + Add license
-        </a>
-    </div>
+    @include('partials.admin-nav', ['active' => 'licenses', 'createRoute' => 'admin.licenses.create', 'createLabel' => '+ Add license'])
 </header>
 
 @if (session('status'))
