@@ -20,7 +20,7 @@
 </div>
 
 @if(config('license.enabled'))
-<div class="card">
+<div class="card" id="licenses">
     <h2 style="margin:0 0 1.25rem 0;font-size:1.15rem;">Licenses</h2>
 
     @if($licenses->isNotEmpty())

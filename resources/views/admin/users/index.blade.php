@@ -39,12 +39,15 @@
                         <td style="padding:0.9rem 0.75rem;">{{ $user->admin_email ?? '—' }}</td>
                         <td style="padding:0.9rem 0.75rem;">{{ $user->is_admin ? 'Admin' : 'Member' }}</td>
                         <td style="padding:0.9rem 0.75rem;">{{ $user->created_at->format('M j, Y') }}</td>
-                        <td style="padding:0.9rem 0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+                        <td style="padding:0.9rem 0.75rem;display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;">
                             <a class="link" href="{{ route('admin.users.edit', $user) }}">Edit</a>
+                            @if(config('license.enabled'))
+                                <a class="link" href="{{ route('admin.users.edit', $user) }}#licenses">+ License</a>
+                            @endif
                             <form method="POST" action="{{ route('admin.users.destroy', $user) }}" onsubmit="return confirm('Delete this user?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" style="background:none;border:none;color:var(--error);cursor:pointer;padding:0;">Delete</button>
+                                <button type="submit" style="background:none;border:none;color:var(--error);cursor:pointer;padding:0;font-size:inherit;">Delete</button>
                             </form>
                         </td>
                     </tr>
