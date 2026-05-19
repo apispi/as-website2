@@ -23,44 +23,13 @@ class LocalPost extends Model
         'published_at' => 'datetime',
     ];
 
-    public static function slugColumn(): string
-    {
-        return 'slug';
-    }
-
-    public function scopePublished($query, $type = null)
+    public function scopePublished($query)
     {
         return $query->where('status', 'publish')
             ->where(function ($q) {
                 $q->whereNull('published_at')
                     ->orWhere('published_at', '<=', now());
             });
-    }
-
-    // WordPress-compat accessors so existing views work unchanged
-    public function getPostTitleAttribute(): string
-    {
-        return $this->title ?? '';
-    }
-
-    public function getPostNameAttribute(): string
-    {
-        return $this->slug ?? '';
-    }
-
-    public function getPostDateAttribute()
-    {
-        return $this->published_at ?? $this->created_at;
-    }
-
-    public function getPostContentAttribute(): string
-    {
-        return $this->content ?? '';
-    }
-
-    public function getPostExcerptAttribute(): string
-    {
-        return $this->excerpt ?? '';
     }
 
     public function getExcerptAttribute(): string

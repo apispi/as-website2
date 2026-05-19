@@ -21,7 +21,7 @@ use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\UserLicenseController;
 use App\Http\Controllers\Admin\LogController as AdminLogController;
 use App\Http\Controllers\WhoisController;
-use App\Http\Controllers\WpPostController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\CertController;
 use App\Http\Controllers\SubdomainController;
 use App\Http\Controllers\Admin\EthereumController;
@@ -111,8 +111,8 @@ Route::post('/miniciv/delete', [App\Http\Controllers\MiniCivController::class, '
     ->name('miniciv.delete');
 // WordPress posts index and single post
 if (config('posts.enabled')) {
-    Route::get('/posts', [WpPostController::class, 'index'])->name('posts.index');
-    Route::get('/posts/{slug}', [WpPostController::class, 'show'])->name('posts.show');
+    Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+    Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show');
 }
 
 Route::middleware('guest')->group(function () {
