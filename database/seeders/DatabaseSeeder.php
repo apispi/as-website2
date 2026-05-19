@@ -94,5 +94,8 @@ class DatabaseSeeder extends Seeder
 
         // Seed example game products (if not present)
         $this->call(\Database\Seeders\GamesSeeder::class);
+
+        // Seed example agent products (if not present)
+        $this->call(\Database\Seeders\AgentsSeeder::class);
     }
 }
