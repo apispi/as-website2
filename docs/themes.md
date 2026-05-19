@@ -45,6 +45,17 @@ FRONTPAGE_THEME=license
 APP_LICENSES_PUBLIC_VALIDATION=true
 ```
 
+#### Apispi Theme (`apispi`)
+
+- API inspector / developer-tool focused frontpage
+- Inline request bar, response preview panel, and feature cards
+- Links to API Lab, shop, dashboard, and docs
+
+**Configuration:**
+```env
+FRONTPAGE_THEME=apispi
+```
+
 #### Login Theme (`login`)
 
 - Prominent login form
@@ -124,7 +135,7 @@ Themes extend the main `layouts.app` and can override sections:
 
 ### Environment Variables
 
-- `FRONTPAGE_THEME`: Active frontpage theme (default, games, license, login)
+- `FRONTPAGE_THEME`: Active frontpage theme (default, games, license, login, apispi)
 - `GAMES_CATEGORY`: Product category for games theme
 - `APP_GAMES_ENABLED`: Enable games features (default: false)
 - `APP_LICENSES_PUBLIC_VALIDATION`: Enable license validation on license theme
