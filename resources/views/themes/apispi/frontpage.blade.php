@@ -10,8 +10,6 @@
 
     .as-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
 
-    /* remove the large top padding the .page wrapper adds before the hero */
-    .page { padding-top: 0 !important; }
 
     /* ── Hero ── */
     .as-hero {
