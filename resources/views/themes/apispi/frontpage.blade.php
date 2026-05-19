@@ -2,7 +2,7 @@
 
 @section('title', config('site.name', 'ApiSpi') . ' · The Future of AI is Autonomous')
 
-@section('content')
+@section('full-width')
 @push('head')
 <style>
     /* ── ApiSpi theme ── modelled on beta.apispi.com ───────────── */
@@ -553,5 +553,4 @@
     </div>
 </section>
 
-@include('partials.footer')
 @endsection
