@@ -10,51 +10,56 @@
 
     .as-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
 
-    /* ── Nav ── */
-    .as-nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.9rem 1.25rem;
-        background: #fff;
-        border-bottom: 1px solid #e8eaf0;
-        position: sticky;
-        top: 0;
-        z-index: 100;
+    /* ── Restyle the layout's .site-nav for the apispi theme ── */
+    .site-nav {
+        background: #fff !important;
+        border-radius: 0 !important;
+        box-shadow: 0 1px 0 #e8eaf0 !important;
+        padding: 0.75rem 1.25rem !important;
     }
-    .as-nav-logo {
-        font-weight: 800;
-        font-size: 1.25rem;
-        color: #1a1a2e;
-        text-decoration: none;
-        letter-spacing: -0.5px;
+    .site-nav a.brand {
+        color: #7c3aed !important;
+        font-weight: 800 !important;
+        font-size: 1.2rem !important;
+        letter-spacing: -0.5px !important;
     }
-    .as-nav-logo span { color: #7c3aed; }
-    .as-nav-links {
-        display: flex;
-        gap: 1.75rem;
-        list-style: none;
-        margin: 0;
-        padding: 0;
+    .site-nav .nav-links a {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: #4b5563 !important;
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
+        padding: 0.45rem 0.75rem !important;
+        border-radius: 6px !important;
+        transition: color .15s, background .15s !important;
     }
-    .as-nav-links a {
-        color: #4b5563;
-        text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: 500;
-        transition: color .15s;
+    .site-nav .nav-links a:hover {
+        color: #7c3aed !important;
+        background: #f5f3ff !important;
+        transform: none !important;
+        box-shadow: none !important;
     }
-    .as-nav-links a:hover { color: #7c3aed; }
-    .as-nav-cta {
-        background: #7c3aed;
+    .site-nav .nav-links a.nav-active {
+        background: #7c3aed !important;
         color: #fff !important;
-        padding: 0.45rem 1rem;
-        border-radius: 6px;
-        font-weight: 600 !important;
-        font-size: 0.88rem !important;
-        transition: background .15s !important;
+        border-color: transparent !important;
+        box-shadow: 0 4px 12px rgba(124,58,237,0.3) !important;
     }
-    .as-nav-cta:hover { background: #6d28d9 !important; color: #fff !important; }
+    /* style the last link (Register) as a CTA button */
+    .site-nav .nav-links a[href*="register"] {
+        background: #7c3aed !important;
+        color: #fff !important;
+        font-weight: 700 !important;
+        border-radius: 6px !important;
+        padding: 0.45rem 1rem !important;
+    }
+    .site-nav .nav-links a[href*="register"]:hover {
+        background: #6d28d9 !important;
+        color: #fff !important;
+    }
+    /* remove the large top padding the .page wrapper adds before content */
+    .page { padding-top: 0 !important; }
 
     /* ── Hero ── */
     .as-hero {
@@ -361,25 +366,6 @@
     }
 </style>
 @endpush
-
-{{-- ── Navigation ── --}}
-<nav class="as-nav">
-    <a class="as-nav-logo" href="{{ url('/') }}">Api<span>Spi</span></a>
-    <ul class="as-nav-links">
-        <li><a href="{{ url('/') }}">Home</a></li>
-        @if(config('shop.enabled'))
-            <li><a href="{{ url('/shop') }}">Agents</a></li>
-        @endif
-        @if(config('posts.enabled', false))
-            <li><a href="{{ url('/posts') }}">News</a></li>
-        @endif
-        @if(config('apilab.enabled'))
-            <li><a href="{{ url('/api-lab') }}">API Lab</a></li>
-        @endif
-        <li><a href="{{ route('login') }}">Sign in</a></li>
-        <li><a class="as-nav-cta" href="{{ route('register') }}">Get started →</a></li>
-    </ul>
-</nav>
 
 {{-- ── Hero ── --}}
 <section class="as-hero">
