@@ -343,10 +343,8 @@
 
         <div class="as-agents-grid">
         @php
-            $badgeCycle = ['popular' => 0, 'premium' => 0, 'new' => 0];
             $badgeMap = ['as-badge-popular' => 'Popular', 'as-badge-premium' => 'Premium', 'as-badge-new' => 'New'];
             $badgeKeys = array_keys($badgeMap);
-            $icons = ['🤖','🧠','⚡','🔍','🛡️','🌐'];
         @endphp
 
         @if(!empty($products ?? []) && count($products))
@@ -354,15 +352,31 @@
                 @php
                     $badgeClass = $badgeKeys[$i % count($badgeKeys)];
                     $badgeLabel = $badgeMap[$badgeClass];
-                    $icon = $icons[$i % count($icons)];
                     $href = $product->url ?? url('/shop/' . ($product->product_code ?? ''));
                     $isExternal = !empty($product->url);
                     $rating = number_format(4.8 + ($i % 3) * 0.05, 2);
                     $users = (280 + $i * 80) . '+';
+                    // Resolve thumbnail
+                    $thumb = null;
+                    if (!empty($product->media) && !empty($product->media->path)) {
+                        try { $thumb = \Illuminate\Support\Facades\Storage::disk($product->media->disk)->url($product->media->path); } catch (\Exception $e) {}
+                    }
+                    if (!$thumb) {
+                        $d = strtolower($product->description ?? '');
+                        if (\Illuminate\Support\Str::contains($d, ['security','irap','compliance','ism','essential eight','pspf','iso 27001'])) { $svgFile = 'security.svg'; }
+                        elseif (\Illuminate\Support\Str::contains($d, ['avatar','clone','voice','executive'])) { $svgFile = 'avatar.svg'; }
+                        elseif (\Illuminate\Support\Str::contains($d, ['contract','clause','legal','red-flag'])) { $svgFile = 'contract.svg'; }
+                        elseif (\Illuminate\Support\Str::contains($d, ['meeting','minute','transcript','action item'])) { $svgFile = 'meeting.svg'; }
+                        elseif (\Illuminate\Support\Str::contains($d, ['document','pdf','extract','report','scan'])) { $svgFile = 'document.svg'; }
+                        else { $svgFile = 'robot.svg'; }
+                        $thumb = asset('assets/agents/' . $svgFile);
+                    }
                 @endphp
                 <a href="{{ $href }}" @if($isExternal) target="_blank" rel="noopener" @endif class="as-agent-card">
                     <div class="as-agent-card-top">
-                        <div class="as-agent-icon">{{ $icon }}</div>
+                        <div class="as-agent-icon" style="overflow:hidden;padding:0;">
+                            <img src="{{ $thumb }}" alt="{{ $product->name }}" style="width:48px;height:48px;object-fit:cover;border-radius:12px;">
+                        </div>
                         <span class="as-badge {{ $badgeClass }}">{{ $badgeLabel }}</span>
                     </div>
                     <h3>{{ $product->name }}</h3>

@@ -46,18 +46,36 @@
                             }
                             if (! $thumb) {
                                 $desc = strtolower($product->description ?? '');
-                                if (\Illuminate\Support\Str::contains($desc, ['space','asteroid','rocket','satellite','cosmic','galaxy'])) {
-                                    $file = 'rocket.svg';
-                                } elseif (\Illuminate\Support\Str::contains($desc, ['puzz','puzzle','match','brain'])) {
-                                    $file = 'puzzle.svg';
-                                } elseif (\Illuminate\Support\Str::contains($desc, ['race','racer','racing','car','drive'])) {
-                                    $file = 'racer.svg';
+                                $agentCategory = config('agents.category', 'Agent');
+                                if ($product->category === $agentCategory) {
+                                    if (\Illuminate\Support\Str::contains($desc, ['security','irap','compliance','ism','essential eight','pspf','iso 27001'])) {
+                                        $file = 'security.svg'; $assetDir = 'agents';
+                                    } elseif (\Illuminate\Support\Str::contains($desc, ['avatar','clone','voice','executive'])) {
+                                        $file = 'avatar.svg'; $assetDir = 'agents';
+                                    } elseif (\Illuminate\Support\Str::contains($desc, ['contract','clause','legal','red-flag','redline'])) {
+                                        $file = 'contract.svg'; $assetDir = 'agents';
+                                    } elseif (\Illuminate\Support\Str::contains($desc, ['meeting','minute','transcript','action item'])) {
+                                        $file = 'meeting.svg'; $assetDir = 'agents';
+                                    } elseif (\Illuminate\Support\Str::contains($desc, ['document','pdf','extract','report','scan'])) {
+                                        $file = 'document.svg'; $assetDir = 'agents';
+                                    } else {
+                                        $file = 'robot.svg'; $assetDir = 'agents';
+                                    }
                                 } else {
-                                    $file = 'joystick.svg';
+                                    if (\Illuminate\Support\Str::contains($desc, ['space','asteroid','rocket','satellite','cosmic','galaxy'])) {
+                                        $file = 'rocket.svg'; $assetDir = 'games';
+                                    } elseif (\Illuminate\Support\Str::contains($desc, ['puzz','puzzle','match','brain'])) {
+                                        $file = 'puzzle.svg'; $assetDir = 'games';
+                                    } elseif (\Illuminate\Support\Str::contains($desc, ['race','racer','racing','car','drive'])) {
+                                        $file = 'racer.svg'; $assetDir = 'games';
+                                    } else {
+                                        $file = 'joystick.svg'; $assetDir = 'games';
+                                    }
                                 }
                                 $m = \App\Models\Media::where('filename', $file)->latest()->first();
-                                if ($m) { $thumb = \Illuminate\Support\Facades\Storage::disk($m->disk)->url($m->path); }
-                                else { $thumb = asset('assets/games/' . $file); }
+                                $thumb = $m
+                                    ? \Illuminate\Support\Facades\Storage::disk($m->disk)->url($m->path)
+                                    : asset('assets/' . $assetDir . '/' . $file);
                             }
                         @endphp
                         <div style="width:64px;height:64px;flex:0 0 64px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid rgba(15,23,42,0.04);">
