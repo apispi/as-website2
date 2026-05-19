@@ -9,24 +9,7 @@
         <h1>License management</h1>
         <p class="lead">Review, edit, and retire license allocations across the organization.</p>
     </div>
-    <div class="admin-nav">
-        <a class="{{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
-        <a class="active" href="{{ route('admin.licenses.index') }}">Licenses</a>
-        @if(config('products.enabled'))
-            <a class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}" href="{{ route('admin.products.index') }}">Products</a>
-        @endif
-        <a class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">Users</a>
-        @if(config('logs.enabled') && Route::has('admin.event-logs.index'))
-            <a class="{{ request()->routeIs('admin.event-logs.index') ? 'active' : '' }}" href="{{ route('admin.event-logs.index') }}">Logs</a>
-        @endif
-        @if (config('admin.servers_enabled'))
-            <a class="{{ request()->routeIs('admin.servers.*') ? 'active' : '' }}" href="{{ route('admin.servers.index') }}">Servers</a>
-        @endif
-        @if(config('license.enabled') && config('license.public_validation') && Route::has('admin.tools.license-validation'))
-            <a class="{{ request()->routeIs('admin.tools.license-validation') ? 'active' : '' }}" href="{{ route('admin.tools.license-validation') }}">License Validation</a>
-        @endif
-        <a href="{{ route('admin.licenses.create') }}" class="{{ request()->routeIs('admin.licenses.create') ? 'active' : '' }}">+ New license</a>
-    </div>
+    @include('partials.admin-nav', ['active' => 'licenses'])
 </header>
 
 @if (session('status'))

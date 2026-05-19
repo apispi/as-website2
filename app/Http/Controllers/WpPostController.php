@@ -30,7 +30,7 @@ class WpPostController extends Controller
 
         $model = config('posts.model', \App\Models\WpPost::class);
 
-        $post = $model::where('post_name', $slug)
+        $post = $model::where($model::slugColumn(), $slug)
             ->published()
             ->firstOrFail();
 

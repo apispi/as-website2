@@ -10,6 +10,11 @@ abstract class Post extends Model
         'post_date' => 'datetime',
     ];
 
+    public static function slugColumn(): string
+    {
+        return 'post_name';
+    }
+
     public function getExcerptAttribute()
     {
         if (! empty($this->post_excerpt)) {

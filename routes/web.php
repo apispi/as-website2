@@ -198,6 +198,7 @@ Route::prefix('admin')
         if (config('products.enabled')) {
             Route::resource('products', AdminProductController::class)->except(['show']);
         }
+        Route::resource('posts', \App\Http\Controllers\Admin\PostController::class)->except(['show']);
         Route::resource('users', AdminUserController::class)->except(['show']);
         if (config('admin.servers_enabled')) {
             Route::resource('servers', AdminServerController::class)->except(['show']);

@@ -9,13 +9,7 @@
         <h1>Upload media</h1>
         <p class="lead">Add images to the media library for use on the site.</p>
     </div>
-    <div class="admin-nav">
-        <a class="{{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
-        <a class="{{ request()->routeIs('admin.media.*') ? 'active' : '' }}" href="{{ route('admin.media.index') }}">Media</a>
-        @if(config('products.enabled'))
-            <a class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}" href="{{ route('admin.products.index') }}">Products</a>
-        @endif
-    </div>
+    @include('partials.admin-nav', ['active' => 'media'])
 </header>
 
 <div class="card">

@@ -9,22 +9,7 @@
         <h1>License validation tester</h1>
         <p class="lead">Send sample payloads to <code style="font-family:monospace;">POST /api/licenses/validate</code> without leaving the browser.</p>
     </div>
-    <div class="admin-nav">
-        <a class="{{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
-        @if(config('license.enabled'))
-            <a class="{{ request()->routeIs('admin.licenses.*') ? 'active' : '' }}" href="{{ route('admin.licenses.index') }}">Licenses</a>
-        @endif
-        @if(config('products.enabled'))
-            <a class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}" href="{{ route('admin.products.index') }}">Products</a>
-        @endif
-        <a class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">Users</a>
-        @if(config('logs.enabled') && Route::has('admin.event-logs.index'))
-            <a class="{{ request()->routeIs('admin.event-logs.index') ? 'active' : '' }}" href="{{ route('admin.event-logs.index') }}">Logs</a>
-        @endif
-        @if(config('license.enabled') && config('license.public_validation') && Route::has('admin.tools.license-validation'))
-            <a class="active" href="{{ route('admin.tools.license-validation') }}">License Validation</a>
-        @endif
-    </div>
+    @include('partials.admin-nav', ['active' => 'tools'])
 </header>
 
 <section class="card">
